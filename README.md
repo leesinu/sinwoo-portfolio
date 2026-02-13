@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sinwoo Portfolio
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build & Lint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## 프로젝트 데이터 편집 가이드
 
-To learn more about Next.js, take a look at the following resources:
+프로젝트 상세 콘텐츠는 `app/data/projects.ts`에서 관리합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 새 프로젝트 추가: `projects` 배열에 동일한 스키마 객체를 추가합니다.
+- 라우팅 URL: `slug` 값이 `/projects/[slug]` 경로로 사용됩니다.
+- 미디어 교체: `media.heroImage`, `gameplayImages`, `systemImages`, `codeImages` 경로를 `/public/placeholders` 또는 실제 이미지 경로로 변경합니다.
+- 섹션 편집: `sections`에 `title`, `paragraphs`, `bullets`를 구성하면 상세 페이지가 자동 렌더링합니다.
+- 트러블슈팅: `troubleshooting` 배열에 문제/원인/해결/배운 점을 입력합니다.
+- 링크: `links.github|video|build|docs`에 URL을 넣고, 없으면 `null`을 유지합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+홈 `Projects` 섹션 카드는 동일 데이터에서 요약 정보를 가져오며, 클릭 시 상세 페이지/모달 딥링크로 이동합니다.
