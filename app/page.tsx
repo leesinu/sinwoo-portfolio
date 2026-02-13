@@ -4,6 +4,7 @@ import { Card } from "./components/Card";
 import { IconRow } from "./components/IconRow";
 import { SectionHeader } from "./components/SectionHeader";
 import { Timeline } from "./components/Timeline";
+import Link from "next/link";
 import { contacts, experiences, github, heroContent, projects, skills } from "./data/content";
 
 const designTokens = {
@@ -70,22 +71,29 @@ export default function Home() {
           <SectionHeader title="Projects" subtitle="협업과 플레이 경험을 중심으로 구축한 대표 프로젝트입니다." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project) => (
-              <Card key={project.title}>
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-slate-100">{project.title}</h3>
-                  <Badge>{project.status}</Badge>
-                </div>
-                <p className="mt-2 text-sm text-slate-300">{project.summary}</p>
-                <p className="mt-3 text-xs uppercase tracking-wider text-cyan-200">Role · {project.role}</p>
-                <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-300">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-                <div className="mt-4">
-                  <IconRow items={project.stack} />
-                </div>
-              </Card>
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                aria-label={`${project.title} 상세 보기`}
+                className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+              >
+                <Card>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-lg font-semibold text-slate-100">{project.title}</h3>
+                    <Badge>{project.status}</Badge>
+                  </div>
+                  <p className="mt-2 text-sm text-slate-300">{project.summary}</p>
+                  <p className="mt-3 text-xs uppercase tracking-wider text-cyan-200">Role · {project.role}</p>
+                  <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-300">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-4">
+                    <IconRow items={project.stack} />
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>

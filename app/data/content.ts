@@ -1,4 +1,7 @@
+import { projects as portfolioProjects } from "./projects";
+
 export type Project = {
+  slug: string;
   title: string;
   summary: string;
   role: string;
@@ -29,44 +32,15 @@ export const heroContent = {
   ctaSecondary: "연락하기",
 };
 
-export const projects: Project[] = [
-  {
-    title: "Clinical Trial -The Final-",
-    summary: "2.5D 퍼즐 방탈출 게임",
-    role: "PD / Developer",
-    stack: ["Unity", "C#", "Puzzle Design", "Interaction"],
-    status: "Completed",
-    highlights: [
-      "환경 상호작용 기반의 퍼즐 진행 구조 설계",
-      "난이도 곡선을 고려한 스테이지 시퀀싱",
-      "UI 피드백과 몰입감 중심의 플레이 루프 개선",
-    ],
-  },
-  {
-    title: "Unknown",
-    summary: "공포 퍼즐 방탈출 게임",
-    role: "Client Developer",
-    stack: ["Unity", "C#", "AI Logic", "Narrative"],
-    status: "In Progress",
-    highlights: [
-      "씬 연출과 게임플레이 동기화 구조 구현",
-      "공포 연출용 트리거/사운드 이벤트 시스템 구성",
-      "긴장도 유지 중심의 탐색 UX 설계",
-    ],
-  },
-  {
-    title: "Unlight",
-    summary: "4인 협동 TPS",
-    role: "Network Gameplay Engineer",
-    stack: ["Unity", "Mirror", "TPS", "Sync"],
-    status: "Prototype",
-    highlights: [
-      "Mirror 기반 실시간 동기화 프로토타입",
-      "역할군별 전투/지원 플레이 패턴 설계",
-      "협동 상황에서의 가독성 높은 UI 지표 구성",
-    ],
-  },
-];
+export const projects: Project[] = portfolioProjects.map((project) => ({
+  slug: project.slug,
+  title: project.title,
+  summary: project.subtitle,
+  role: project.role,
+  stack: project.techStack,
+  status: project.status,
+  highlights: project.contributions.slice(0, 3),
+}));
 
 export const skills: SkillGroup[] = [
   { category: "Core", icon: "⚡", items: ["Unity", "C#", "OOP", "Gameplay Architecture"] },
